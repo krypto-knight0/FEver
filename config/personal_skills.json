@@ -1,0 +1,1003 @@
+{
+  "schema_version": 1,
+  "characters": {
+    "fe7_unit_3": {
+      "description": "After combat, gain +2 Avoid for this map (maximum +20).",
+      "effect_id": "fe7_unit_3",
+      "parameters": {
+        "amount": 2,
+        "cap": 20
+      },
+      "stats": {},
+      "rom_character_id": 3
+    },
+    "fe7_unit_1": {
+      "description": "After combat, gain +2 Hit for this map (maximum +20).",
+      "effect_id": "fe7_unit_1",
+      "parameters": {
+        "amount": 2,
+        "cap": 20
+      },
+      "stats": {},
+      "rom_character_id": 1
+    },
+    "fe7_unit_2": {
+      "description": "After combat, gain +2 Crit for this map (maximum +20).",
+      "effect_id": "fe7_unit_2",
+      "parameters": {
+        "amount": 2,
+        "cap": 20
+      },
+      "stats": {},
+      "rom_character_id": 2
+    },
+    "fe7_unit_24": {
+      "description": "When initiating, +2 Crit per tile traveled before combat (maximum +10).",
+      "effect_id": "fe7_unit_24",
+      "parameters": {
+        "amount": 2,
+        "cap": 10
+      },
+      "stats": {},
+      "rom_character_id": 24
+    },
+    "fe7_unit_23": {
+      "description": "When initiating, +2 Hit per tile traveled before combat (maximum +10).",
+      "effect_id": "fe7_unit_23",
+      "parameters": {
+        "amount": 2,
+        "cap": 10
+      },
+      "stats": {},
+      "rom_character_id": 23
+    },
+    "fe7_unit_29": {
+      "description": "When initiating, +2 Avoid per tile traveled before combat (maximum +10).",
+      "effect_id": "fe7_unit_29",
+      "parameters": {
+        "amount": 2,
+        "cap": 10
+      },
+      "stats": {},
+      "rom_character_id": 29
+    },
+    "fe7_unit_13": {
+      "description": "Counterattack at range 1 with any bow.",
+      "effect_id": "fe7_unit_13",
+      "parameters": {
+        "range": 1
+      },
+      "stats": {},
+      "rom_character_id": 13
+    },
+    "fe7_unit_8": {
+      "description": "Counterattack at range 2 with any axe.",
+      "effect_id": "fe7_unit_8",
+      "parameters": {
+        "range": 2
+      },
+      "stats": {},
+      "rom_character_id": 8
+    },
+    "fe7_unit_17": {
+      "description": "After healing, restore half the HP healed to the ally with the lowest HP percentage, at any distance.",
+      "effect_id": "fe7_unit_17",
+      "parameters": {
+        "heal_percent": 50
+      },
+      "stats": {},
+      "rom_character_id": 17
+    },
+    "fe7_unit_19": {
+      "description": "+10% weapon experience and +10 percentage points to stat growth rates.",
+      "effect_id": "fe7_unit_19",
+      "parameters": {
+        "growth": 10,
+        "xp_tenths": 1
+      },
+      "stats": {},
+      "rom_character_id": 19
+    },
+    "fe7_unit_28": {
+      "description": "+10 Hit and Avoid when initiating combat.",
+      "effect_id": "fe7_unit_28",
+      "parameters": {
+        "amount": 10
+      },
+      "stats": {},
+      "rom_character_id": 28
+    },
+    "fe7_unit_35": {
+      "description": "If uninjured since the previous own phase, +10 Crit and Avoid until injured or the next own phase.",
+      "effect_id": "fe7_unit_35",
+      "parameters": {
+        "amount": 10
+      },
+      "stats": {},
+      "rom_character_id": 35
+    },
+    "fe7_unit_38": {
+      "description": "Play grants the ally +2 Str/Mag and +10 Hit until their next phase.",
+      "effect_id": "fe7_unit_38",
+      "parameters": {},
+      "stats": {
+        "str": 2,
+        "magic": 2,
+        "hit": 10
+      },
+      "rom_character_id": 38
+    },
+    "fe7_unit_16": {
+      "description": "Dealing damage doubles the next healing amount. Healing grants +5 Mag and +10 Hit through the next initiating combat.",
+      "effect_id": "fe7_unit_16",
+      "parameters": {
+        "magic": 5,
+        "hit": 10,
+        "healing_multiplier": 2,
+        "assist_boost": 0
+      },
+      "stats": {},
+      "rom_character_id": 16
+    },
+    "fe7_unit_44": {
+      "description": "Start each map with +5 Str/Mag/Spd/Def/Res. Lose 1 from this bonus each even turn, becoming a penalty on turn 12.",
+      "effect_id": "fe7_unit_44",
+      "parameters": {
+        "amount": 5,
+        "decay": 1
+      },
+      "stats": {},
+      "rom_character_id": 44
+    },
+    "fe7_unit_26": {
+      "description": "Other allies within 3 tiles gain +10% weapon and level XP.",
+      "effect_id": "fe7_unit_26",
+      "parameters": {
+        "radius": 3,
+        "xp_tenths": 1
+      },
+      "stats": {},
+      "rom_character_id": 26
+    },
+    "fe7_unit_25": {
+      "description": "When initiating, +1 Def per tile traveled before combat (maximum +5).",
+      "effect_id": "fe7_unit_25",
+      "parameters": {
+        "amount": 1,
+        "cap": 5
+      },
+      "stats": {},
+      "rom_character_id": 25
+    },
+    "fe7_unit_14": {
+      "description": "+1 maximum attack range per 2 remaining movement points, rounded down.",
+      "effect_id": "fe7_unit_14",
+      "parameters": {
+        "movement_per_range": 2
+      },
+      "stats": {},
+      "rom_character_id": 14
+    },
+    "fe7_unit_9": {
+      "description": "+2 Atk/Spd/Def/Res during combat. After combat, take 3 damage.",
+      "effect_id": "fe7_unit_9",
+      "parameters": {
+        "amount": 2,
+        "damage": 3
+      },
+      "stats": {},
+      "rom_character_id": 9
+    },
+    "fe7_unit_11": {
+      "description": "+3 Def/Res during combat while an ally is within 2 tiles.",
+      "effect_id": "fe7_unit_11",
+      "parameters": {
+        "amount": 3,
+        "radius": 2
+      },
+      "stats": {},
+      "rom_character_id": 11
+    },
+    "fe7_unit_6": {
+      "description": "+3 Atk/Def during combat when not adjacent to an ally.",
+      "effect_id": "fe7_unit_6",
+      "parameters": {
+        "amount": 3,
+        "radius": 1
+      },
+      "stats": {},
+      "rom_character_id": 6
+    },
+    "fe7_unit_27": {
+      "description": "After healing an ally, adjacent allies around the target recover half the HP healed, including the healer.",
+      "effect_id": "fe7_unit_27",
+      "parameters": {
+        "radius": 1,
+        "heal_percent": 50
+      },
+      "stats": {},
+      "rom_character_id": 27
+    },
+    "fe7_unit_4": {
+      "description": "+3 Atk/Spd and -3 Def/Res.",
+      "effect_id": "fe7_unit_4",
+      "parameters": {
+        "amount": 3,
+        "penalty": 3
+      },
+      "stats": {},
+      "rom_character_id": 4
+    },
+    "fe7_unit_22": {
+      "description": "+3 Atk/Res during combat against a foe above 75% HP.",
+      "effect_id": "fe7_unit_22",
+      "parameters": {
+        "amount": 3,
+        "hp_percent": 75
+      },
+      "stats": {},
+      "rom_character_id": 22
+    },
+    "fe7_unit_51": {
+      "description": "+3 Atk/Spd/Def/Res during combat on River, Sea, Lake or Mountain terrain.",
+      "effect_id": "fe7_unit_51",
+      "parameters": {
+        "amount": 3
+      },
+      "stats": {},
+      "rom_character_id": 51
+    },
+    "fe7_unit_30": {
+      "description": "When initiating, +1 Spd per tile traveled before combat (maximum +5).",
+      "effect_id": "fe7_unit_30",
+      "parameters": {
+        "amount": 1,
+        "cap": 5
+      },
+      "stats": {},
+      "rom_character_id": 30
+    },
+    "fe7_unit_54": {
+      "description": "If uninjured since the previous own phase, +10 Crit and +20 percentage points to Silencer's activation chance until injured or the next own phase. Requires Silencer.",
+      "effect_id": "fe7_unit_54",
+      "parameters": {
+        "amount": 10,
+        "silencer": 20
+      },
+      "stats": {},
+      "rom_character_id": 54
+    },
+    "fe7_unit_37": {
+      "description": "Dance grants the ally +2 Def/Res and +10 Avoid until their next phase.",
+      "effect_id": "fe7_unit_37",
+      "parameters": {},
+      "stats": {
+        "def": 2,
+        "res": 2,
+        "avoid": 10
+      },
+      "rom_character_id": 37
+    },
+    "fe7_unit_52": {
+      "description": "When initiating, +1 Res per tile traveled before combat (maximum +5).",
+      "effect_id": "fe7_unit_52",
+      "parameters": {
+        "amount": 1,
+        "cap": 5
+      },
+      "stats": {},
+      "rom_character_id": 52
+    },
+    "fe7_unit_32": {
+      "description": "When initiating, +1 Atk per tile traveled before combat (maximum +5).",
+      "effect_id": "fe7_unit_32",
+      "parameters": {
+        "amount": 1,
+        "cap": 5
+      },
+      "stats": {},
+      "rom_character_id": 32
+    },
+    "fe7_unit_34": {
+      "description": "Passable terrain costs only 1 movement point. Impassable terrain remains blocked.",
+      "effect_id": "fe7_unit_34",
+      "parameters": {},
+      "stats": {},
+      "rom_character_id": 34
+    },
+    "fe7_unit_5": {
+      "description": "At the start of each own turn, gain +1 Atk/Spd/Def/Res (maximum +5). Reset to +0 instead if any ally is adjacent.",
+      "effect_id": "fe7_unit_5",
+      "parameters": {
+        "amount": 1,
+        "cap": 5
+      },
+      "stats": {},
+      "rom_character_id": 5
+    },
+    "fe7_unit_31": {
+      "description": "When initiating, +1 Luck per tile traveled before combat (maximum +10).",
+      "effect_id": "fe7_unit_31",
+      "parameters": {
+        "amount": 1,
+        "cap": 10
+      },
+      "stats": {},
+      "rom_character_id": 31
+    },
+    "fe7_unit_21": {
+      "description": "Double the support bonuses received from {partner}.",
+      "effect_id": "fe7_unit_21",
+      "parameters": {
+        "multiplier": 2
+      },
+      "stats": {},
+      "rom_character_id": 21,
+      "description_names": {
+        "partner": 15
+      }
+    },
+    "fe7_unit_15": {
+      "description": "Double the support bonuses received from {partner}.",
+      "effect_id": "fe7_unit_15",
+      "parameters": {
+        "multiplier": 2
+      },
+      "stats": {},
+      "rom_character_id": 15,
+      "description_names": {
+        "partner": 21
+      }
+    },
+    "fe7_unit_7": {
+      "description": "Recover 10 HP with each critical hit. After combat, lose 5 HP if no critical hit was delivered.",
+      "effect_id": "fe7_unit_7",
+      "parameters": {
+        "heal": 10,
+        "damage": 5
+      },
+      "stats": {},
+      "rom_character_id": 7
+    },
+    "fe7_unit_56": {
+      "description": "Dealing damage with an axe grants +2 Atk throughout the next sword battle. Dealing damage with a sword grants +2 Atk throughout the next axe battle.",
+      "effect_id": "fe7_unit_56",
+      "parameters": {
+        "amount": 2
+      },
+      "stats": {},
+      "rom_character_id": 56
+    },
+    "fe7_unit_20": {
+      "description": "+1 Atk/Spd/Def/Res per attached skill stack, including this personal skill (maximum +10).",
+      "effect_id": "fe7_unit_20",
+      "parameters": {
+        "amount": 1,
+        "cap": 10
+      },
+      "stats": {},
+      "rom_character_id": 20
+    },
+    "fe7_unit_36": {
+      "description": "If uninjured since the previous own phase, +15 Crit until injured or the next own phase.",
+      "effect_id": "fe7_unit_36",
+      "parameters": {
+        "amount": 15
+      },
+      "stats": {},
+      "rom_character_id": 36
+    },
+    "fe7_unit_33": {
+      "description": "During combat, +1 Atk/Spd/Def/Res per foe within 3 tiles.",
+      "effect_id": "fe7_unit_33",
+      "parameters": {
+        "amount": 1,
+        "radius": 3
+      },
+      "stats": {},
+      "rom_character_id": 33
+    },
+    "fe7_unit_55": {
+      "description": "+10 Crit. Critical hits deal 10 additional damage after the critical multiplier.",
+      "effect_id": "fe7_unit_55",
+      "parameters": {
+        "amount": 10,
+        "critical_damage": 10
+      },
+      "stats": {},
+      "rom_character_id": 55
+    },
+    "fe7_unit_18": {
+      "description": "+1 Mag per learned C support, +2 per B support and +3 per A support, at any distance.",
+      "effect_id": "fe7_unit_18",
+      "parameters": {
+        "amount": 1
+      },
+      "stats": {},
+      "rom_character_id": 18
+    },
+    "fe7_unit_39": {
+      "description": "At the start of each own turn, grant every deployed allied Lord +1 Atk/Spd/Def/Res (maximum +5). Reset these bonuses to +0 when this unit deals damage or uses an assist.",
+      "effect_id": "fe7_unit_39",
+      "parameters": {
+        "amount": 1,
+        "cap": 5
+      },
+      "stats": {},
+      "rom_character_id": 39
+    },
+    "fe6_unit_1": {
+      "description": "Takes physical combats for female support partners within 2 tiles: 1 per C partner, 2 per B, or 3 per A each turn.",
+      "effect_id": "fe6_unit_1",
+      "parameters": {
+        "radius": 2
+      },
+      "stats": {},
+      "rom_character_id": 1
+    },
+    "fe6_unit_38": {
+      "description": "Takes magical combats for male support partners within 2 tiles: 1 per C partner, 2 per B, or 3 per A each turn.",
+      "effect_id": "fe6_unit_38",
+      "parameters": {
+        "radius": 2
+      },
+      "stats": {},
+      "rom_character_id": 38
+    },
+    "fe6_unit_31": {
+      "description": "Other allies within 3 tiles gain +10% weapon and level XP.",
+      "effect_id": "fe7_unit_26",
+      "parameters": {
+        "radius": 3,
+        "xp_tenths": 1
+      },
+      "stats": {},
+      "rom_character_id": 31
+    },
+    "fe6_unit_27": {
+      "description": "When initiating, +2 Hit per tile traveled before combat (maximum +10).",
+      "effect_id": "fe7_unit_23",
+      "parameters": {
+        "amount": 2,
+        "cap": 10
+      },
+      "stats": {},
+      "rom_character_id": 27
+    },
+    "fe6_unit_28": {
+      "description": "When initiating, +2 Crit per tile traveled before combat (maximum +10).",
+      "effect_id": "fe7_unit_24",
+      "parameters": {
+        "amount": 2,
+        "cap": 10
+      },
+      "stats": {},
+      "rom_character_id": 28
+    },
+    "fe6_unit_17": {
+      "description": "After healing, restore half the HP healed to the ally with the lowest HP percentage, at any distance.",
+      "effect_id": "fe7_unit_17",
+      "parameters": {
+        "heal_percent": 50
+      },
+      "stats": {},
+      "rom_character_id": 17
+    },
+    "fe6_unit_49": {
+      "description": "When initiating, +2 Avoid per tile traveled before combat (maximum +10).",
+      "effect_id": "fe7_unit_29",
+      "parameters": {
+        "amount": 2,
+        "cap": 10
+      },
+      "stats": {},
+      "rom_character_id": 49
+    },
+    "fe6_unit_20": {
+      "description": "If uninjured since the previous own phase, +10 Crit and Avoid until injured or the next own phase.",
+      "effect_id": "fe7_unit_35",
+      "parameters": {
+        "amount": 10
+      },
+      "stats": {},
+      "rom_character_id": 20
+    },
+    "fe6_unit_5": {
+      "description": "+10 Hit and Avoid when initiating combat.",
+      "effect_id": "fe7_unit_28",
+      "parameters": {
+        "amount": 10
+      },
+      "stats": {},
+      "rom_character_id": 5
+    },
+    "fe6_unit_59": {
+      "description": "When initiating, +1 Def per tile traveled before combat (maximum +5).",
+      "effect_id": "fe7_unit_25",
+      "parameters": {
+        "amount": 1,
+        "cap": 5
+      },
+      "stats": {},
+      "rom_character_id": 59
+    },
+    "fe6_unit_13": {
+      "description": "Can counterattack at range 1 with any bow.",
+      "effect_id": "fe7_unit_13",
+      "parameters": {
+        "range": 1
+      },
+      "stats": {},
+      "rom_character_id": 13
+    },
+    "fe6_unit_9": {
+      "description": "At combat start, if the foe is not fast enough to double, gain +2 Atk/Def during combat.",
+      "effect_id": "fe6_unit_9",
+      "parameters": {
+        "amount": 2
+      },
+      "stats": {},
+      "rom_character_id": 9
+    },
+    "fe6_unit_66": {
+      "description": "Receive an extra 10% discount when shopping.",
+      "effect_id": "fe6_unit_66",
+      "parameters": {
+        "discount_percent": 10
+      },
+      "stats": {},
+      "rom_character_id": 66
+    },
+    "fe6_unit_24": {
+      "description": "At combat start, if an ally is within 2 tiles, gain +10 Crit during combat.",
+      "effect_id": "fe6_unit_24",
+      "parameters": {
+        "radius": 2,
+        "amount": 10
+      },
+      "stats": {},
+      "rom_character_id": 24
+    },
+    "fe6_unit_33": {
+      "description": "At combat start, if your Hit chance is below 80%, gain +3 Str during combat.",
+      "effect_id": "fe6_unit_33",
+      "parameters": {
+        "hit_percent": 80,
+        "amount": 3
+      },
+      "stats": {},
+      "rom_character_id": 33
+    },
+    "fe6_unit_34": {
+      "description": "At combat start, if your Hit chance is below 80%, gain +2 Spd during combat.",
+      "effect_id": "fe6_unit_34",
+      "parameters": {
+        "hit_percent": 80,
+        "amount": 2
+      },
+      "stats": {},
+      "rom_character_id": 34
+    },
+    "fe6_unit_37": {
+      "description": "At combat start, if an ally is within 2 tiles, gain +2 Def/Res during combat.",
+      "effect_id": "fe6_unit_37",
+      "parameters": {
+        "radius": 2,
+        "amount": 2
+      },
+      "stats": {},
+      "rom_character_id": 37
+    },
+    "fe6_unit_2": {
+      "description": "While another deployed ally has less than 75% HP, gain +3 Mov.",
+      "effect_id": "fe6_unit_2",
+      "parameters": {
+        "hp_percent": 75,
+        "amount": 3
+      },
+      "stats": {},
+      "rom_character_id": 2
+    },
+    "fe6_unit_23": {
+      "description": "At combat start, if the foe has more than 75% HP, gain +10 Crit during combat.",
+      "effect_id": "fe6_unit_23",
+      "parameters": {
+        "hp_percent": 75,
+        "amount": 10
+      },
+      "stats": {},
+      "rom_character_id": 23
+    },
+    "fe6_unit_16": {
+      "description": "The foe cannot recover HP during or after combat. After dealing damage, block all of that foe's HP recovery for one turn.",
+      "effect_id": "fe6_unit_16",
+      "parameters": {},
+      "stats": {},
+      "rom_character_id": 16
+    },
+    "fe6_unit_14": {
+      "description": "At combat start, if not fast enough to double the foe, gain +4 Atk during combat.",
+      "effect_id": "fe6_unit_14",
+      "parameters": {
+        "amount": 4
+      },
+      "stats": {},
+      "rom_character_id": 14
+    },
+    "fe6_unit_60": {
+      "description": "Other allies within 2 tiles gain +2 Atk/Def during combat.",
+      "effect_id": "fe6_unit_60",
+      "parameters": {
+        "radius": 2,
+        "amount": 2
+      },
+      "stats": {},
+      "rom_character_id": 60
+    },
+    "fe6_unit_58": {
+      "description": "When initiating, +1 Con per tile traveled before combat (maximum +5).",
+      "effect_id": "fe6_unit_58",
+      "parameters": {
+        "amount": 1,
+        "cap": 5
+      },
+      "stats": {},
+      "rom_character_id": 58
+    },
+    "fe6_unit_32": {
+      "description": "If uninjured since the previous own phase, +10 Hit/Crit until injured or the next own phase.",
+      "effect_id": "fe6_unit_32",
+      "parameters": {
+        "amount": 10
+      },
+      "stats": {},
+      "rom_character_id": 32
+    },
+    "fe6_unit_22": {
+      "description": "At combat start, gain +1 Atk per point of attack speed beyond the doubling threshold (maximum +5).",
+      "effect_id": "fe6_unit_22",
+      "parameters": {
+        "amount": 1,
+        "cap": 5
+      },
+      "stats": {},
+      "rom_character_id": 22
+    },
+    "fe6_unit_8": {
+      "description": "At combat start, gain +1 Atk per point of Def above the foe (maximum +5).",
+      "effect_id": "fe6_unit_8",
+      "parameters": {
+        "amount": 1,
+        "cap": 5
+      },
+      "stats": {},
+      "rom_character_id": 8
+    },
+    "fe6_unit_25": {
+      "description": "At combat start, if an ally is within 2 tiles, gain +10 Hit during combat.",
+      "effect_id": "fe6_unit_25",
+      "parameters": {
+        "radius": 2,
+        "amount": 10
+      },
+      "stats": {},
+      "rom_character_id": 25
+    },
+    "fe6_unit_10": {
+      "description": "At combat start, gain +1 Res per point of Def above the foe (maximum +5).",
+      "effect_id": "fe6_unit_10",
+      "parameters": {
+        "amount": 1,
+        "cap": 5
+      },
+      "stats": {},
+      "rom_character_id": 10
+    },
+    "fe6_unit_4": {
+      "description": "When initiating combat, gain +10 Hit/Crit.",
+      "effect_id": "fe6_unit_4",
+      "parameters": {
+        "amount": 10
+      },
+      "stats": {},
+      "rom_character_id": 4
+    },
+    "fe6_unit_64": {
+      "description": "Gain +3 Atk/Spd/Def/Res during combat on River, Sea, or Lake terrain.",
+      "effect_id": "fe6_unit_64",
+      "parameters": {
+        "amount": 3
+      },
+      "stats": {},
+      "rom_character_id": 64
+    },
+    "fe6_unit_56": {
+      "description": "Gain +3 Atk/Spd/Def/Res during combat on Mountain or Peaks terrain.",
+      "effect_id": "fe6_unit_56",
+      "parameters": {
+        "amount": 3
+      },
+      "stats": {},
+      "rom_character_id": 56
+    },
+    "fe6_unit_15": {
+      "description": "At combat start, if at full HP, gain +1 Atk/Spd/Def/Res during combat.",
+      "effect_id": "fe6_unit_15",
+      "parameters": {
+        "amount": 1
+      },
+      "stats": {},
+      "rom_character_id": 15
+    },
+    "fe6_unit_46": {
+      "description": "When initiating, +1 Spd per tile traveled before combat (maximum +5).",
+      "effect_id": "fe7_unit_30",
+      "parameters": {
+        "amount": 1,
+        "cap": 5
+      },
+      "stats": {},
+      "rom_character_id": 46
+    },
+    "fe6_unit_43": {
+      "description": "Dance grants the ally +2 Atk and +10 Hit until their next phase.",
+      "effect_id": "fe7_unit_38",
+      "parameters": {},
+      "stats": {
+        "str": 2,
+        "magic": 2,
+        "hit": 10
+      },
+      "rom_character_id": 43
+    },
+    "fe6_unit_52": {
+      "description": "Play grants the ally +2 Def/Res and +10 Avoid until their next phase.",
+      "effect_id": "fe7_unit_37",
+      "parameters": {},
+      "stats": {
+        "def": 2,
+        "res": 2,
+        "avoid": 10
+      },
+      "rom_character_id": 52
+    },
+    "fe6_unit_61": {
+      "description": "At combat start, gain +1 Atk/Spd/Def/Res during combat for each adjacent ally.",
+      "effect_id": "fe6_unit_61",
+      "parameters": {
+        "amount": 1
+      },
+      "stats": {},
+      "rom_character_id": 61
+    },
+    "fe6_unit_35": {
+      "description": "Gain +2 Atk/Spd/Def/Res during combat. After combat, take 3 damage.",
+      "effect_id": "fe7_unit_9",
+      "parameters": {
+        "amount": 2,
+        "damage": 3
+      },
+      "stats": {},
+      "rom_character_id": 35
+    },
+    "fe6_unit_42": {
+      "description": "At combat start, gain +2 Hit per point of Res above the foe (maximum +20).",
+      "effect_id": "fe6_unit_42",
+      "parameters": {
+        "amount": 2,
+        "cap": 20
+      },
+      "stats": {},
+      "rom_character_id": 42
+    },
+    "fe6_unit_53": {
+      "description": "After Steal, Door, or Chest, can use remaining movement.",
+      "effect_id": "fe6_unit_53",
+      "parameters": {},
+      "stats": {},
+      "rom_character_id": 53
+    },
+    "fe6_unit_55": {
+      "description": "When initiating, +1 Res per tile traveled before combat (maximum +5).",
+      "effect_id": "fe7_unit_52",
+      "parameters": {
+        "amount": 1,
+        "cap": 5
+      },
+      "stats": {},
+      "rom_character_id": 55
+    },
+    "fe6_unit_29": {
+      "description": "Other allies within 2 tiles gain +10 Hit during combat.",
+      "effect_id": "fe6_unit_29",
+      "parameters": {
+        "radius": 2,
+        "amount": 10
+      },
+      "stats": {},
+      "rom_character_id": 29
+    },
+    "fe6_unit_63": {
+      "description": "Other allies within 2 tiles gain +10 Avoid during combat.",
+      "effect_id": "fe6_unit_63",
+      "parameters": {
+        "radius": 2,
+        "amount": 10
+      },
+      "stats": {},
+      "rom_character_id": 63
+    },
+    "fe6_unit_54": {
+      "description": "+1 Atk/Spd/Def/Res per attached skill stack, including this personal skill (maximum +10).",
+      "effect_id": "fe7_unit_20",
+      "parameters": {
+        "amount": 1,
+        "cap": 10
+      },
+      "stats": {},
+      "rom_character_id": 54
+    },
+    "fe6_unit_30": {
+      "description": "Passable Desert, Snow, and Forest terrain costs only 1 movement point.",
+      "effect_id": "fe6_unit_30",
+      "parameters": {},
+      "stats": {},
+      "rom_character_id": 30
+    },
+    "fe6_unit_26": {
+      "description": "Passable Mountain and Peaks terrain costs only 1 movement point.",
+      "effect_id": "fe6_unit_26",
+      "parameters": {},
+      "stats": {},
+      "rom_character_id": 26
+    },
+    "fe6_unit_3": {
+      "description": "Can counterattack at range 2.",
+      "effect_id": "fe6_unit_3",
+      "parameters": {
+        "range": 2
+      },
+      "stats": {},
+      "rom_character_id": 3
+    },
+    "fe6_unit_39": {
+      "description": "At combat start, if the foe has more than 75% HP, gain +3 Atk/Res during combat.",
+      "effect_id": "fe6_unit_39",
+      "parameters": {
+        "hp_percent": 75,
+        "amount": 3
+      },
+      "stats": {},
+      "rom_character_id": 39
+    },
+    "fe6_unit_44": {
+      "description": "When initiating, +1 Luck per tile traveled before combat (maximum +10).",
+      "effect_id": "fe7_unit_31",
+      "parameters": {
+        "amount": 1,
+        "cap": 10
+      },
+      "stats": {},
+      "rom_character_id": 44
+    },
+    "fe6_unit_50": {
+      "description": "When initiating, +1 Res per tile traveled before combat (maximum +5).",
+      "effect_id": "fe7_unit_52",
+      "parameters": {
+        "amount": 1,
+        "cap": 5
+      },
+      "stats": {},
+      "rom_character_id": 50
+    },
+    "fe6_unit_11": {
+      "description": "Gain +1 Mov while at full HP.",
+      "effect_id": "fe6_unit_11",
+      "parameters": {
+        "amount": 1
+      },
+      "stats": {},
+      "rom_character_id": 11
+    },
+    "fe6_unit_40": {
+      "description": "Dealing damage doubles the next healing amount. Healing or assisting an ally grants +5 Mag and +10 Hit through the next initiating combat.",
+      "effect_id": "fe7_unit_16",
+      "parameters": {
+        "magic": 5,
+        "hit": 10,
+        "healing_multiplier": 2,
+        "assist_boost": 1
+      },
+      "stats": {},
+      "rom_character_id": 40
+    },
+    "fe6_unit_12": {
+      "description": "Gain +1 Mov while at full HP.",
+      "effect_id": "fe6_unit_11",
+      "parameters": {
+        "amount": 1
+      },
+      "stats": {},
+      "rom_character_id": 12
+    },
+    "fe6_unit_36": {
+      "description": "Gain +2 Atk/Spd/Def/Res during combat. After combat, take 3 damage.",
+      "effect_id": "fe7_unit_9",
+      "parameters": {
+        "amount": 2,
+        "damage": 3
+      },
+      "stats": {},
+      "rom_character_id": 36
+    },
+    "fe6_unit_41": {
+      "description": "Dealing damage doubles the next healing amount. Healing or assisting an ally grants +5 Mag and +10 Hit through the next initiating combat.",
+      "effect_id": "fe7_unit_16",
+      "parameters": {
+        "magic": 5,
+        "hit": 10,
+        "healing_multiplier": 2,
+        "assist_boost": 1
+      },
+      "stats": {},
+      "rom_character_id": 41
+    },
+    "fe6_unit_45": {
+      "description": "When initiating, +1 Luck per tile traveled before combat (maximum +10).",
+      "effect_id": "fe7_unit_31",
+      "parameters": {
+        "amount": 1,
+        "cap": 10
+      },
+      "stats": {},
+      "rom_character_id": 45
+    },
+    "fe6_unit_47": {
+      "description": "When initiating, +1 Spd per tile traveled before combat (maximum +5).",
+      "effect_id": "fe7_unit_30",
+      "parameters": {
+        "amount": 1,
+        "cap": 5
+      },
+      "stats": {},
+      "rom_character_id": 47
+    },
+    "fe6_unit_48": {
+      "description": "When initiating, +1 Spd per tile traveled before combat (maximum +5).",
+      "effect_id": "fe7_unit_30",
+      "parameters": {
+        "amount": 1,
+        "cap": 5
+      },
+      "stats": {},
+      "rom_character_id": 48
+    },
+    "fe6_unit_57": {
+      "description": "Gain +3 Atk/Spd/Def/Res during combat on Mountain or Peaks terrain.",
+      "effect_id": "fe6_unit_56",
+      "parameters": {
+        "amount": 3
+      },
+      "stats": {},
+      "rom_character_id": 57
+    },
+    "fe6_unit_62": {
+      "description": "At combat start, gain +1 Atk/Spd/Def/Res during combat for each adjacent ally.",
+      "effect_id": "fe6_unit_61",
+      "parameters": {
+        "amount": 1
+      },
+      "stats": {},
+      "rom_character_id": 62
+    },
+    "fe6_unit_65": {
+      "description": "Gain +3 Atk/Spd/Def/Res during combat on River, Sea, or Lake terrain.",
+      "effect_id": "fe6_unit_64",
+      "parameters": {
+        "amount": 3
+      },
+      "stats": {},
+      "rom_character_id": 65
+    }
+  }
+}

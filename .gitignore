@@ -1,0 +1,21 @@
+# Local Godot caches, development extraction, and private files.
+/.godot/
+/content/
+/runtime/text_audit.json
+/export_credentials.cfg
+/build/
+/tests/
+*.gba
+*.sav
+*.srm
+*.keystore
+*.jks
+*.p12
+*.pfx
+*.pem
+*.key
+*.apk
+*.aab
+*.pck
+.env
+.env.*
