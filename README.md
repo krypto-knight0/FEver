@@ -1,190 +1,119 @@
 # FEver
 
-FEver is a Godot tactical RPG engine for desktop and mobile. It runs FE6 and FE7 campaigns in Classic and Rogue modes using data imported from a player-supplied GBA ROM. No ROMs, extracted game media, dialogue catalogs or static chapter packages are included.
+Retro SRPG campaigns for desktop and Android.
 
-The project uses **Godot 4.6.2**, GDScript and the Compatibility renderer. It implements its own battle and campaign systems; it is not a GBA emulator. Event presentation, AI and optional gameplay rules can differ from the original hardware.
+Play FE6 and FE7 with full mouse or touch controls. Choose a Classic campaign or build an army through Rogue mode, then customize difficulty, artwork, voices, translations, and more.
 
-FEver is independent of Nintendo and Intelligent Systems. Third-party names identify compatible games. The bundled application artwork is custom project media; original game artwork and sound are read locally from the selected cartridge.
+## Start playing
 
-## Getting started
+1. Open FEver and select **Insert Cartridge**.
+2. Choose a supported `.gba` file and let the import finish.
+3. Select a campaign and difficulty, or continue an existing save.
 
-1. Open this folder's `project.godot` with Godot 4.6.2 and let resource import finish.
-2. Run the project with **F5 / Run Project** to open the cartridge library.
-3. Select **Insert Cartridge**, choose a supported `.gba` file and wait for import.
-4. Choose a campaign and difficulty, or continue a save for that cartridge.
+Imported games appear in the cartridge library for quick access. FEver reads maps, units, dialogue, artwork, and music from the cartridge you select.
 
-From a terminal in this folder:
+### Supported cartridges
 
-```sh
-godot --editor --path .
-# Run without opening the editor:
-godot --path .
-```
+| Game | Game code | Cartridge |
+| --- | --- | --- |
+| Flux Echo 6 | `FX6E` | Sci-fi prototype/test campaign based on FE6 |
+| FE6 | `AFEJ` | Japanese base |
+| FE7 | `AE7J` | Japanese base |
+| FE7 | `AE7E` | US/English base |
 
-Keep ROM files outside the project. Desktop imports retain the selected file path; mobile imports keep a validated private copy.
+Each cartridge has its own saves and progress. Some modified and translated roms are also compatible, outside of custom ARM/Thumb logic.
 
-## Dynamic ROM import
+### Run from source
 
-All supported cartridges use the same dynamic import pipeline for their game and region.
+Use **Godot 4.6.2**. Open [godot/project.godot](godot/project.godot), let resource import finish, and press **F5**.
 
-| Game | Supported native layout |
-| --- | --- |
-| FE6 | Japanese base (`AFEJ`), including compatible translated or modified cartridges |
-| FE7 | Japanese (`AE7J`) and US/English (`AE7E`) bases |
+## Choose your mode
 
-Compatibility depends on native structures and engine behavior, not just the filename or header. The importers follow table pointers and read current records, including supported relocated or edited data. Known native helpers are validated before their behavior is adapted; unsupported layouts, changed helper implementations and malformed data produce compatibility errors. Arbitrary engine rewrites and additional regional layouts are not supported automatically. FE8 will be supported in the future.
+**Classic Normal** and **Classic Hard** offer campaign play with deployment, terrain, weapon ranks and durability, rescue and trade, recruitment, promotions, supports, shops, and chapter objectives. FE7 includes all three starting campaign routes.
 
-The runtime reads:
+**Rogue Normal** and **Rogue Hard** add personal skills, acquired abilities, upgrade cards, and army-wide rewards. Build around movement, combat, growths, support bonuses, and other combinations. Rogue runs use permadeath and track allowances for Undo, arena visits, and training. Browse the **Rogue skills** library for each ability's effects.
 
-- Chapter directories, map geometry, terrain, deployments and supported objectives, events, routes and rewards.
-- Character, class and item records, names, weapon rules, promotions, supports and ending records.
-- Dialogue, portraits, backgrounds, title artwork, map sprites, supported battle animation data, music sequences and samples.
-- Native difficulty settings, deployment/stat banks and supported campaign progression conditions.
+## Controls and settings
 
-FE6 and FE7 support Classic Normal, Classic Hard, Rogue Normal and Rogue Hard. FE7 exposes all three campaign routes, including supported side chapters and the two-stage finale. Branch choices, army transfers, recruitment and ending progression use the selected cartridge's data and the engine's saved state.
+Select a friendly unit to see its movement and commands. Choose a destination, pick an action, and review the combat forecast. Drag to pan the battlefield; use the mouse wheel or a two-finger pinch to zoom. Enemy ranges, unit details, the battle record, and conversation log help you plan and review your turn.
 
-Gallery indexes are discovered when first opened. Images and audio are decoded as needed, and malformed optional gallery artwork is isolated from the campaign decoder. Generated chapter resources use private temporary storage; decoded media is not installed as a persistent asset cache or written into the project.
+Settings include:
 
-Native hardware-only visual effects and some choreography are approximated. Audio sequencing, PSG synthesis and envelopes are not bit-perfect hardware emulation, and stat rolls use the port's deterministic random generator. These limits do not imply support for arbitrary ROM hacks.
+- Dialogue and animation speed, music and sound volume, grid visibility, and screen shake.
+- Battle animation preferences, tutorial skipping, automatic weapon selection, and automatic lead-unit promotion.
+- Classic-mode permadeath, reinforcement timing and warnings, support growth, durability, and chapter-start repairs.
+- Supply access, keys, and ordinary door/chest unlocking.
+- Save/resume, chapter restart, Undo, and a separate **Cheats** panel.
 
-## Playing
+## Libraries and customization
 
-### Classic campaigns
+Open **Settings → Library** to browse portraits, backgrounds, maps, music, items, support conversations, character voices, and Rogue skills.
 
-**Classic Normal** and **Classic Hard** provide campaign play with familiar tactical systems: deployment, movement and terrain, combat forecasts, weapon ranks and durability, healing and support actions, rescue and trade, recruitment, promotions, shops, supply, and chapter objectives. The available campaign routes and chapters depend on the loaded cartridge.
+Use **Settings → Custom** to import portrait and background artwork, character voices, and text replacements. Artwork and voice packs use ZIP files containing JSON manifests and their media. Artwork uses PNG; voice clips can use Ogg, WAV, or MP3. Import panels let you enable, disable, and remove packs.
 
-Select a friendly unit to inspect its movement and commands. Preview a destination, choose an action, and inspect the combat forecast before committing. Enemy ranges and unit details help with planning. The battle record and conversation log let you review what happened.
+**Settings → Advanced** provides personal-skill configuration export/import. Custom translations can also change displayed words and names, including the FE7 tactician name.
 
-The interface supports mouse clicks and touch input. Drag to pan the battlefield; use the mouse wheel or a two-finger pinch to zoom. Save/resume, chapter restart, and action Undo are available through the interface. Mode-specific limits apply to Undo and restarts in Rogue mode.
+## Save and transfer progress
 
-### Quality of life
+Use **Settings → Advanced → Export Save / Import Save** to move a save between installations. The cartridge library also provides **Export Saves** and diagnostics export.
 
-Settings let you adjust presentation and gameplay without editing files. Options include:
-
-- Grid visibility, dialogue speed, music and sound volumes, screen shake, and when battle animations play.
-- Skipping tutorials, automatic weapon selection, and automatic lord promotion at level 20.
-- Permadeath in Classic mode. With it disabled, defeated allies miss the next battle and then return; required allies still need to survive.
-- Support growth across the map and additional support conversations while retaining the five-rank combat-bonus limit.
-- Reinforcement behavior: same-turn attacks, same-turn attacks with warnings, or attacks starting on the following turn.
-- Separate weapon and item durability settings, including paid/free chapter-start repairs and unlimited durability.
-- Supply access, using keys from Supply, and free ordinary door/chest unlocking. Mission gates and special locks retain their required triggers.
-
-A separate **Cheats** panel provides options such as extra gold, temporary free movement, combat advantages, and clearing current enemies. Difficulty changes take effect on a chapter restart or when entering a new chapter. Some preferences are constrained by the selected mode.
-
-### Rogue mode
-
-**Rogue Normal** and **Rogue Hard** add a persistent upgrade system to the campaigns. Characters gain personal skills and acquired abilities; enemies can carry skills too. Choose from upgrade cards as the run progresses, with periodic army-wide rewards alongside individual upgrades.
-
-Upgrades can affect movement, combat, weapon training, growths, support gain, fog vision, and other systems. Some rewards offer skill exchanges, training, or recovery of fallen allies. Personal skills stay associated with their characters. The in-game Rogue skill library describes the available effects.
-
-Rogue mode enforces permadeath and tracks allowances for Undo, arena visits, and training. These limits and the upgrade choices are part of the run's progression, rather than unrestricted Classic-mode preferences.
-
-## Libraries
-
-The startup **cartridge library** lets you reopen imported games. Within a game, **Settings → Library** provides:
-
-| Category | What you can browse |
-| --- | --- |
-| Original backgrounds / CGs | Scene artwork decoded from the cartridge |
-| Original portraits | Cartridge character portraits |
-| Original maps | Map artwork and chapter/route entries |
-| Music listener | Music from the loaded ROM |
-| Items glossary | Item information |
-| Supports | Support partners and conversations |
-| Character voices | Clips from an imported voice pack |
-| Rogue skills | Personal and acquired skill information |
-
-Enabled artwork imports also appear in their corresponding imported-library categories. Availability depends on the loaded game and installed packs; voice clips are supplied by the player.
-
-## Custom imports
-
-Open **Settings → Custom** to manage customization. Artwork and voices are imported into private application storage, so personal packs do not need to be added to the project or included in an exported build.
-
-- **Character art:** replace dialogue portraits and unit-card portraits, with separate controls for scale, position, and flipping.
-- **Background art:** replace backgrounds, CGs, title artwork, and supported battle backgrounds/platforms.
-- **Character voices:** provide Ogg, WAV, or MP3 clips for supported actions such as selection, attacks, critical hits, damage, defeat, and status. A voice ZIP can contain `voices.json` at its root or inside a parent folder; clip paths are relative to that manifest.
-- **Custom translations:** import/export a JSON configuration of literal word or phrase replacements, with whole-word and case-sensitive options. These affect displayed text; they do not patch a ROM or enable another ROM revision.
-- **FE7 tactician name:** the default is **Tactician**. Add a custom translation from `Tactician` to your preferred name to change its display in dialogue and logs.
-- **Personal skills:** use **Settings → Advanced** to export a configuration, edit supported fields, import overrides, or restore defaults. Character keys and personal `effect_id` references use `fe6_unit_<id>` or `fe7_unit_<id>`, based on the ROM character ID. Name-based character keys are not accepted.
-
-Artwork and voice imports use ZIP packs with JSON manifests and referenced media, rather than an arbitrary archive of images or sounds. Artwork uses PNG files. Pack formats are implemented in `runtime/character_art_import.gd`, `runtime/portrait_store.gd`, `runtime/map_art_store.gd`, `runtime/sprite_store.gd`, and `runtime/voice_store.gd`. Use the controls in the import panel to enable or disable custom artwork and restore the original presentation.
-
-ZIP manifest and media paths match regardless of capitalization. Valid voice clips, artwork entries, translation replacements, and personal skill overrides can import even when other entries fail validation; the import result reports what was skipped. A pack with no valid entries leaves the previous selection active. Unreadable manifests, unsafe archives, and storage failures still stop the import. ROMs and saves must validate as complete, internally consistent files.
-
-The voice import panel also offers **Delete all imported voices (both games)**. This removes active and inactive voice media from private app storage; your source ZIP files remain untouched.
-
-The artwork and voice delete buttons show the stored size of the packs they will remove, including inactive imports.
-
-## Saves and local data
-
-Each cartridge has a separate save namespace keyed by game and ROM SHA-256: `user://saves/<game>-<rom-sha256>/suspend.json`. A changed ROM is a different cartridge identity, even when its title is unchanged.
-
-FEver saves are separate from GBA cartridge saves and emulator save states. Use **Settings → Advanced → Export Save / Import Save** to transfer a game between installations. The cartridge library's information panel also provides **Export Saves** and diagnostics export.
-
-Saves, preferences, temporary ROM resources and custom imports live under Godot's private `user://` storage. Export saves before clearing application data or uninstalling a mobile build. The receiving installation needs the identical supported cartridge; save exports do not include ROMs or custom media packs.
-
-## Building
-
-Use Godot **4.6.2** and matching export templates. Install templates through **Editor → Manage Export Templates**. No private developer scripts or reference tools are required to open or export this folder.
-
-The project includes one Android export preset. Create desktop presets locally. Exported builds must include `*.json,notices/*.txt` in the non-resource filter: these contain personal-skill configuration, shared text encodings and offline engine notices. Preserve exclusions for development content and tests, and keep ROMs, saves, custom packs and signing credentials outside the project.
-
-### Desktop
-
-1. Open **Project → Export** and add a preset for your target platform and architecture.
-2. Set the resource filters described above and choose an output directory outside this project.
-3. Export the application. If using a separate `.pck`, distribute it with the executable.
-
-For example, after creating a preset named **Windows Desktop** and an output folder:
-
-```sh
-godot --headless --path . --export-release "Windows Desktop" ../build/windows/FEver.exe
-```
-
-Windows is the primary development platform. Validate Linux and macOS exports on their target systems.
-
-### Android
-
-The included **Android** preset targets ARM64 and defaults to `../build/fever-debug.apk`. Network permissions are disabled. The verified local build uses Godot 4.6.2, matching export templates, OpenJDK 21 and an installed Android SDK.
-
-1. Set **Java SDK Path** and **Android SDK Path** in **Editor Settings → Export → Android**.
-2. Configure a debug keystore in those settings, resolve export configuration errors and create the output folder.
-3. Export from **Project → Export → Android**, or run:
-
-```sh
-godot --headless --path . --export-debug "Android" ../build/fever-debug.apk
-```
-
-Keep `textures/vram_compression/import_etc2_astc=true` enabled in `project.godot`. Keep keystores and credentials private. Local Windows sandbox safe-save/rename failures can require running the export in a normal PowerShell session with access to the project, temporary directory and installed SDK/JDK.
-
-Install on an ARM64 device for testing. Check the native ROM picker, portrait/landscape layouts, touch dragging, audio, save/resume and private storage. Desktop/headless checks do not establish physical-device behavior. Release signing must be configured separately from the debug build.
-
-### iOS
-
-No iOS preset or verified iOS build is included. This requires a macOS/Xcode environment, export configuration, signing and device validation.
-
-### Verify an export
-
-Start without a previously imported ROM and confirm the cartridge library opens. Import a supported cartridge, start a chapter, exercise movement and combat, then save, close and resume. Confirm **Third-party notices** is available offline. Each player supplies their own cartridge.
-
-## License and notices
-
-No license has been decided yet for FEver's own code. Godot Engine and its bundled components have their own licenses; their notices are included in [notices/](notices/README.md) and available in the application's information/settings panels. Keep these files in exported builds and update them when changing the engine/template version.
+Load the same cartridge file on the receiving device to continue its save. Artwork and voice packs can be imported separately through **Settings → Custom**.
 
 ## Project layout
 
-| Path | Purpose |
+| Path | Contents |
 | --- | --- |
-| `project.godot` | Engine settings and cartridge-library startup scene |
-| `export_presets.cfg` | Android export configuration |
-| `engine/` | Battle rules, campaign state, skills and save handling |
-| `runtime/` | Shared ROM decoding, galleries, text encodings, resource loading and storage |
-| `runtime/fe6/` | FE6-specific profiles, readers and event adapters |
-| `runtime/fe7/` | FE7-specific regional profiles, readers and event adapters |
-| `ui/` | Battle interface, menus, libraries and customization panels |
-| `audio/` | Music, sound and voice playback |
-| `config/` | Project personal-skill definitions |
-| `art/branding/` | Generated application branding |
-| `notices/` | Godot Engine and dependency notices |
+| [godot/](godot/) | Playable application and Android export preset |
+| [godot/engine/](godot/engine/) | Battles, campaigns, skills, and saves |
+| [godot/runtime/](godot/runtime/) | Cartridge import, galleries, and storage; game-specific readers are in `fe6/` and `fe7/` |
+| [godot/ui/](godot/ui/) | Battlefield controls, menus, and customization panels |
+| [godot/audio/](godot/audio/) | Music, sound, and voice playback |
+| [godot/config/](godot/config/) | Personal-skill definitions |
+| [godot/art/branding/](godot/art/branding/) | FEver artwork and icons |
+| [godot/notices/](godot/notices/) | Godot Engine and component notices |
+| [tests/fe6/shared/](tests/fe6/shared/) | Shared FE6 checks |
+| [tools/](tools/) | Test runners and their shared helpers |
 
-The `.gitignore` excludes local caches, extracted development content, ROMs, saves, build products and signing credentials. Preserve these exclusions when preparing a source checkout.
+## Check your setup
+
+The shared tests work with FE6 `AFEJ` and Flux Echo 6 `FX6E` cartridges. They cover importing, edited data, the opening chapter, progression, presentation, libraries, interactions, campaign routes, and Rogue mode.
+
+Use **Python 3.11 or newer** and **Godot 4.6.2**. Python's standard library is sufficient.
+
+List the available suites:
+
+```sh
+python tools/run_fe6_tests.py --list
+```
+
+Run a quick import and opening-chapter check:
+
+```sh
+python tools/run_fe6_tests.py --rom "/path/to/Flux Echo 6.gba" --suites routing chapter1 --output build/tests
+```
+
+Run all shared suites:
+
+```sh
+python tools/run_fe6_tests.py --rom "/path/to/Flux Echo 6.gba" --output build/tests
+```
+
+The runner finds `godot` or `godot4` on PATH. Use `--godot "/path/to/godot-console"` to select an engine executable. Results and logs appear under the output directory you choose.
+
+[tools/test_fe6_dynamic.py](tools/test_fe6_dynamic.py) runs individual suites, including a focused Rogue check with `--rogue --focused`. PowerShell users can use [tools/validate-fe6.ps1](tools/validate-fe6.ps1). See the [shared test guide](tests/fe6/README.md) for all options.
+
+## Build an application
+
+Install Godot 4.6.2 and its matching export templates through **Editor → Manage Export Templates**.
+
+For desktop builds, add your platform under **Project → Export** and choose an output location. The included **Android** preset targets ARM64. Android export also uses an installed Android SDK, OpenJDK 21, and a signing keystore configured in Godot's editor settings.
+
+For an Android debug build, create `build/` beside this README and run:
+
+```sh
+godot --headless --path godot --export-debug "Android" ../build/fever-debug.apk
+```
+
+## Third-party notices
+
+Godot Engine and its bundled components have their own licenses. Their [notices](godot/notices/README.md) are included with FEver and available in the application's information/settings panels.

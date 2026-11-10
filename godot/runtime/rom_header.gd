@@ -24,10 +24,6 @@ static func _ascii_field(bytes: PackedByteArray, offset: int, length: int) -> St
 static func display_name(header: Dictionary, fallback: String = "Cartridge") -> String:
 	var title := str(header.get("title", ""))
 	var code := str(header.get("code", ""))
-	# The stock titles are compact header strings; custom titles stay intact.
-	match title:
-		"FIREEMBLEM6": title = "Fire Emblem 6"
-		"FIREEMBLEM7": title = "Fire Emblem 7"
-		"FIREEMBLEME": title = "Fire Emblem"
+	# Display the selected cartridge's own title without a bundled name catalog.
 	if title.is_empty(): title = fallback
 	return title if code.is_empty() else title + " · " + code

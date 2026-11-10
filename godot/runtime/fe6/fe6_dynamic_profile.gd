@@ -5,10 +5,12 @@ const Decoder = preload("res://runtime/fe6/fe6_dynamic_decoder.gd")
 const POINTERS := [0x17680,0x176e0,0x16410,0x13b10,0x2bb20,0x2bbcc,0x2bb70,0x18a7c,0xe038,0x7fd8,0x21c74,0x60ed8,0x3748,0x4b0f8]
 const MAX_CHAPTERS := 75
 const VERSION := "fe6-dynamic-2"
+const GAME_CODES := ["AFEJ", "FX6E"]
 
 static func detect(bytes: PackedByteArray) -> Dictionary:
-	if bytes.size() < 0x60000 or bytes.size() > 32*1024*1024: return {"error":"Not a supported FE6-sized cartridge."}
-	if bytes.slice(0xac,0xb0).get_string_from_ascii() != "AFEJ": return {"error":"This cartridge is not identified as an FE6 base (AFEJ)."}
+	# The movement-table operand at 0x60ed8 must exist before reading pointers.
+	if bytes.size() < 0x60edc or bytes.size() > 32*1024*1024: return {"error":"Not a supported FE6-sized cartridge."}
+	if bytes.slice(0xac,0xb0).get_string_from_ascii() not in GAME_CODES: return {"error":"This cartridge is not identified as a supported FE6-compatible base (AFEJ or FX6E)."}
 	for at in POINTERS:
 		var value := bytes.decode_u32(at)
 		if value < 0x08000000 or value-0x08000000+4 > bytes.size() or value%4:
