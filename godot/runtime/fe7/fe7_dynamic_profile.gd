@@ -4,6 +4,8 @@ extends RefCounted
 const VERSION := "fe7-jp-native-29"
 const MAX_CHAPTERS := 67
 const US = preload("res://runtime/fe7/fe7_dynamic_us_profile.gd")
+const US_CODES := ["AE7E", "FX7E"]
+const GAME_CODES := ["AE7J", "AE7E", "FX7E"]
 const LAYOUT := {
 	"support_layout":[0x79264,20,253,7],
 	"arena_layout":[0x2f024,0x2f030,0x2f080,0x2f288,0x2f2a8,0x17ce0],
@@ -28,7 +30,7 @@ const LAYOUT := {
 static func detect(bytes: PackedByteArray) -> Dictionary:
 	if bytes.size() < 0xa0000 or bytes.size() > 32*1024*1024: return {"error":"Unsupported FE7 cartridge size."}
 	var code := bytes.slice(0xac,0xb0).get_string_from_ascii()
-	if code not in ["AE7J","AE7E"]: return {"error":"Dynamic FE7 supports Japanese (AE7J) and US/English (AE7E) layouts."}
+	if code not in GAME_CODES: return {"error":"Dynamic FE7 supports Japanese (AE7J) and US/English (AE7E or FX7E) layouts."}
 	var selected := layout_for(bytes)
 	var pointers: Array = []
 	for key in ["characters","items","text","tree","root","chapters","maps","config","graphics","palettes","changes","portraits","sprites","icons","icon_palette"]: pointers.append(selected[key])
@@ -46,10 +48,10 @@ static func detect(bytes: PackedByteArray) -> Dictionary:
 	for entry in commands:
 		if dispatch+int(entry[0])*8+8 > bytes.size() or bytes.decode_u32(dispatch+int(entry[0])*8+4) != entry[1]:
 			return {"error":"FE7 compatibility: incompatible %s event command layout." % code}
-	return {"error":"","game_id":"fe7","version":US.VERSION if code == "AE7E" else VERSION,"region":code}
+	return {"error":"","game_id":"fe7","version":US.VERSION if code in US_CODES else VERSION,"region":code}
 
 static func layout_for(bytes: PackedByteArray) -> Dictionary:
-	return (US.LAYOUT if bytes.size() >= 0xb0 and bytes.slice(0xac,0xb0).get_string_from_ascii() == "AE7E" else LAYOUT).duplicate(true)
+	return (US.LAYOUT if bytes.size() >= 0xb0 and bytes.slice(0xac,0xb0).get_string_from_ascii() in US_CODES else LAYOUT).duplicate(true)
 
 static func decoder(bytes: PackedByteArray) -> RefCounted:
 	var result := preload("res://runtime/fe7/fe7_dynamic_decoder.gd").new()

@@ -78,7 +78,7 @@ static func _load_rom(path: String, private_copy: bool) -> String:
 	hasher.update(bytes)
 	var digest := hasher.finish().hex_encode()
 	var code := bytes.slice(0xac,0xb0).get_string_from_ascii()
-	return _load_dynamic(bytes,digest,path,private_copy,"fe7" if code.begins_with("AE7") else "fe6")
+	return _load_dynamic(bytes,digest,path,private_copy,"fe7" if code in preload("res://runtime/fe7/fe7_dynamic_profile.gd").GAME_CODES else "fe6")
 
 static func _load_dynamic(bytes: PackedByteArray, digest: String, path: String, private_copy: bool, selected_game: String) -> String:
 	var profile = preload("res://runtime/fe7/fe7_dynamic_profile.gd") if selected_game == "fe7" else preload("res://runtime/fe6/fe6_dynamic_profile.gd")

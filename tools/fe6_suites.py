@@ -41,7 +41,7 @@ def require_suite(name, code, digest):
     if suite.group == 'shared':
         # Routing is also the existing FE7 smoke check. The grouped FE6
         # runner restricts its shared group to AFEJ/FX6E.
-        if code not in ('AFEJ', 'FX6E') and not (name == 'routing' and code.startswith('AE7')):
+        if code not in ('AFEJ', 'FX6E') and not (name == 'routing' and code in ('AE7J', 'AE7E', 'FX7E')):
             raise ValueError(f'{name} requires the supported FE6 ABI (AFEJ or FX6E)')
 
 

@@ -842,7 +842,8 @@ const POLICIES := {
 	"11a24:578c04a9c123a7c364953066687cbc02661a36f525a3538f808fb9c20b5a442b":[70540,216,[],"673c1f09f8c47ffe968b62255d79551c3958ac01000717845ff177d8e9e241df"],
 	"11afc:193b1102383ff706a3ace5dabb0443bb2450a52aff233fa3c1b7de23f8af3050":[70756,52,[],"64607d6592c95ffd9cfc13a83d0f3417e3127f38b6431efd1d0c23fe830443c6"],
 	"11b30:a881faa2314ff38ed93dec1f4c87f2607d58e030def31c1fa2400266c92d89db":[70808,28,[],"72d71ef545bd69d47cab8443e086b36fe4def70666f7ad7a42918322ac56be8b"],
-	"15a0c:d836e83faab5a1009a9f0fd59b3f4a059bf92167beeafa8b29dfc294e983e965":[87440,60,[],"89e70fec235dda402b89b221f7e05b25a54089f0f374d4fcc4157c086bf163fd"],
+	# LDR at +2 supplies 18x4 tiles to Decompress; RAM/destination/palette remain signed.
+	"15a0c:d836e83faab5a1009a9f0fd59b3f4a059bf92167beeafa8b29dfc294e983e965":[87440,60,[44,45,46,47],"bd69eb28d52cf68b62862bfd3d04214812dbdd9518584b9a3c08576f0788aa44",[[44,"lz",2304]]],
 	"165f0:aece3e061ff6a39b66ea7b1975a5576608c407a235c9d5dd80a94590fae24628":[90484,48,[44,45,46,47],"aece3e061ff6a39b66ea7b1975a5576608c407a235c9d5dd80a94590fae24628"],
 	"1674a:b4c0e07cbce8198ebb20abda5135c8d53cf63c0ab10bec41f572d1a3251e818f":[90830,48,[],"b4c0e07cbce8198ebb20abda5135c8d53cf63c0ab10bec41f572d1a3251e818f"],
 	"179f0:83dbb71759c1d99edee9e5be8135a58a2cb2842916d2c3593c8bdf29bac7a6af":[95744,16,[],"83dbb71759c1d99edee9e5be8135a58a2cb2842916d2c3593c8bdf29bac7a6af"],
@@ -985,7 +986,8 @@ const POLICIES := {
 	"9f9f8:032578b72cf8ac58c66519a16487afa2c86cc0f12d1364311d3961bc5d29973c":[651196,68,[],"076e76f98931916fb663d7ee87902720cc9b45730ca46d89346c00e62c9b7a9c"],
 	"a0a68:0ccd50c6c7324b5f77fe0fd23f87dc9a60d0b9681126b3ebd6792f41a1231b88":[655516,96,[],"20e2ad8cbeacc75b9e1a61352ae02d453e184ab8d639fe22cdeb9a61e575f953"],
 	"a0ba8:527a91432bbc883998dedf0988b8a031772ce312ce45fa9b53fe081e1bc43948":[655836,52,[],"24163f166c0f8334e4b6f0654193ee9c5625c066c5113b5850031c83779e7153"],
-	"b6e40:2370372c98ddd7a339ca92c19052d506d640bb785170aa06b50db96b36627339":[745524,560,[],"913efde975d7880f524e3f0bdaec6f88533b96839e79d6bd578a01a690828940"],
+	# Continent upload literals: four palette banks, 640 tiles, and 30x20 raw TSA.
+	"b6e40:2370372c98ddd7a339ca92c19052d506d640bb785170aa06b50db96b36627339":[745524,560,[68,69,70,71,72,73,74,75,84,85,86,87],"d18448b132c4f156c979e76eef801caa8756e8f6d664a021c167c816f272667d",[[68,"raw",128],[72,"lz",20480],[84,"world_tsa",1202]]],
 	"b7070:956ce7f57198eab0d0b2d103ae7f6c57848c0f0129def0770bc94941d03345f1":[746084,20,[],"4ed7c4a24249e3c9b003d5958575db74742558388e9fe435450accef303a559c"],
 }
 
@@ -1006,7 +1008,7 @@ static func signature(d: RefCounted, at: int, size: int, operands: Array, expect
 	var key := "%x:%s" % [at,expected]
 	if not POLICIES.has(key): return false
 	var spec: Array = POLICIES[key]
-	return Shared.signature(d,int(spec[0]),int(spec[1]),spec[2],str(spec[3]))
+	return policy_signature(d,int(spec[0]),spec)
 
 static func actual_signature(d: RefCounted, at: int, size: int, operands: Array, expected: String) -> bool:
 	if not us(d): return Shared.signature(d,at,size,operands,expected)
@@ -1015,8 +1017,31 @@ static func actual_signature(d: RefCounted, at: int, size: int, operands: Array,
 	var key := "%x:%s" % [identity(d,at),expected]
 	if POLICIES.has(key):
 		var spec: Array = POLICIES[key]
-		return Shared.signature(d,at,int(spec[1]),spec[2],str(spec[3]))
+		return policy_signature(d,at,spec)
 	return Shared.signature(d,at,size,operands,expected)
+
+static func policy_signature(d: RefCounted, at: int, spec: Array) -> bool:
+	if not Shared.signature(d,at,int(spec[1]),spec[2],str(spec[3])): return false
+	if spec.size() < 5: return true
+	# Only reviewed graphics literals are relocatable. Hash every instruction,
+	# call target and other literal first, then validate the pointed-to resource.
+	for resource in spec[4]:
+		var pointer: int = d.u32(at+int(resource[0]))
+		if pointer < 0x08000000 or pointer >= 0x0a000000 or pointer & 3: return false
+		var target := pointer-0x08000000
+		var count := int(resource[2])
+		if resource[1] == "lz":
+			if not d.require_range(target,4,"Native graphics header"): return false
+			if d.u32(target) != (count<<8)|0x10: return false
+			if d.lz(target).size() != count: return false
+		else:
+			if not d.require_range(target,count,"Native graphics resource"): return false
+			if resource[1] == "world_tsa":
+				if d.u8(target) != 29 or d.u8(target+1) != 19: return false
+				for cell in range(600):
+					var tile: int = d.u16(target+2+cell*2)
+					if tile & 1023 >= 640 or tile >> 12 >= 4: return false
+	return true
 
 static func call_target(d: RefCounted, at: int) -> int:
 	return Shared.call_target(d,at)

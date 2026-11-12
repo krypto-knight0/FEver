@@ -17,6 +17,7 @@ Imported games appear in the cartridge library for quick access. FEver reads map
 | Game | Game code | Cartridge |
 | --- | --- | --- |
 | Flux Echo 6 | `FX6E` | Sci-fi prototype/test campaign based on FE6 |
+| Flux Echo 7 | `FX7E` | Sci-fi prototype/test campaign based on FE7 |
 | FE6 | `AFEJ` | Japanese base |
 | FE7 | `AE7J` | Japanese base |
 | FE7 | `AE7E` | US/English base |
@@ -72,11 +73,12 @@ Load the same cartridge file on the receiving device to continue its save. Artwo
 | [godot/art/branding/](godot/art/branding/) | FEver artwork and icons |
 | [godot/notices/](godot/notices/) | Godot Engine and component notices |
 | [tests/fe6/shared/](tests/fe6/shared/) | Shared FE6 checks |
+| [tests/fe7/](tests/fe7/) | Shared English FE7 checks |
 | [tools/](tools/) | Test runners and their shared helpers |
 
 ## Check your setup
 
-The shared tests work with FE6 `AFEJ` and Flux Echo 6 `FX6E` cartridges. They cover importing, edited data, the opening chapter, progression, presentation, libraries, interactions, campaign routes, and Rogue mode.
+The shared tests work with stock and Flux Echo cartridges. They cover importing, edited data, the opening chapter, progression, presentation, libraries, interactions, campaign routes, and Rogue mode.
 
 Use **Python 3.11 or newer** and **Godot 4.6.2**. Python's standard library is sufficient.
 
@@ -100,7 +102,18 @@ python tools/run_fe6_tests.py --rom "/path/to/Flux Echo 6.gba" --output build/te
 
 The runner finds `godot` or `godot4` on PATH. Use `--godot "/path/to/godot-console"` to select an engine executable. Results and logs appear under the output directory you choose.
 
-[tools/test_fe6_dynamic.py](tools/test_fe6_dynamic.py) runs individual suites, including a focused Rogue check with `--rogue --focused`. PowerShell users can use [tools/validate-fe6.ps1](tools/validate-fe6.ps1). See the [shared test guide](tests/fe6/README.md) for all options.
+[tools/test_fe6_dynamic.py](tools/test_fe6_dynamic.py) runs individual suites, including a focused Rogue check with `--rogue --focused`. PowerShell users can use [tools/validate-fe6.ps1](tools/validate-fe6.ps1). The [shared suites](tests/fe6/shared/) contain the individual checks.
+
+English FE7 (`AE7E`) and Flux Echo 7 (`FX7E`) share a separate set of tests:
+
+```sh
+python tools/run_fe7_tests.py --list
+python tools/run_fe7_tests.py --rom "/path/to/cartridge.gba" --output build/tests
+```
+
+The default run checks both Classic difficulties, media decoding, cartridge
+cards, item rules and graphics pointers. Supports, arena, galleries and ending
+UI checks are available separately. The Python standard library is sufficient;
 
 ## Build an application
 

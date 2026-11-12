@@ -56,7 +56,9 @@ func symbols(id: int) -> Array:
 	return result
 
 func text(id: int) -> String:
-	if layout.get("event_variant","") == "fe7u": return super.text(id)
+	# English item text uses 0x7F for a visible range/placeholder dash. Keep
+	# symbols() lossless, but do not send ASCII DEL to Godot's UI font.
+	if layout.get("event_variant","") == "fe7u": return super.text(id).replace(String.chr(127), "-")
 	return Japanese.plain(symbols(id))
 
 func terrain_name(id: int) -> String:
